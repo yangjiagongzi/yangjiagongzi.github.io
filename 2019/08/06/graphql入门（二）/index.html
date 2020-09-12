@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--Description-->
+  
+  <meta
+    name="description"
+    content="graphql 前端页面的应用前端 graphql 简单应用上次我们讲到了如何搭建一个简单的 graphql 中间层服务器，复习一下，那接下来我们就需要在前端调用这个服务。首先我们创建一个叫做 “fe-react” 的 react 项目：
+1create-react-app fe-react &amp;am"
+  />
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near" />
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="graphql入门（二）" />
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客" />
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary" />
+    
+
+  <!-- Title -->
+  
+  <title>graphql入门（二） - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom Fonts -->
+  <link
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link
+    href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css"
+    type="text/css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/08/06/graphql%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                graphql入门（二）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-08-06</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/javascript/">javascript</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="graphql-前端页面的应用"><a href="#graphql-前端页面的应用" class="headerlink" title="graphql 前端页面的应用"></a>graphql 前端页面的应用</h3><h4 id="前端-graphql-简单应用"><a href="#前端-graphql-简单应用" class="headerlink" title="前端 graphql 简单应用"></a>前端 graphql 简单应用</h4><p>上次我们讲到了如何搭建一个简单的 graphql 中间层服务器，<a href="https://yangjiagongzi.github.io/2019/08/05/graphql%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/">复习一下</a>，那接下来我们就需要在前端调用这个服务。首先我们创建一个叫做 “fe-react” 的 react 项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app fe-react &amp;&amp; cd fe-react &amp;&amp; npm run start</span><br></pre></td></tr></table></figure>
+
+<p>浏览器会自动访问 localhost:3000，这样我们看到了我们熟悉的界面。<br>接下来我们需要安装 graphql 需要的一些依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install apollo-boost react-apollo graphql</span><br></pre></td></tr></table></figure>
+
+<p>依赖安装完成后我们来创建一个 apollo-client，这个 client 是为了连接我们的中间层并且请求数据用的，我们在 src 下面创建一个 graphql 的文件夹，用来管理我们的 graphql 请求，接着我们创建 client.js 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import ApolloClient from &#39;apollo-boost&#39;;</span><br><span class="line"></span><br><span class="line">export const client &#x3D; new ApolloClient(&#123;</span><br><span class="line">  uri: &#39;http:&#x2F;&#x2F;localhost:4000&#x2F;graphql&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样我们的 client 就创建好了，接下来我们要开始请求数据了，在 src/graphql/文件夹下面创建 server.js 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import &#123; gql &#125; from &#39;apollo-boost&#39;;</span><br><span class="line">import &#123; client &#125; from &#39;.&#x2F;client&#39;;</span><br><span class="line"></span><br><span class="line">export function getGrade(gradeId) &#123;</span><br><span class="line">  return client.query(&#123;</span><br><span class="line">    query: gql&#96;</span><br><span class="line">      &#123;</span><br><span class="line">        grade(gradeId: $&#123;gradeId&#125;) &#123;</span><br><span class="line">          id</span><br><span class="line">          name</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#96;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们先看看这段代码，client.query 代表的是请求是 query 类型，传参为一个对象，对象中的 query 为请求主体，${gradeId}是使用了字符串模版，其实更合理的写法是增加一个变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export function getGrade(gradeId) &#123;</span><br><span class="line">  return client.query(&#123;</span><br><span class="line">    query: gql&#96;</span><br><span class="line">      query getGrade($gradeId: Int!) &#123;</span><br><span class="line">        grade(gradeId: $gradeId) &#123;</span><br><span class="line">          id</span><br><span class="line">          name</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#96;,</span><br><span class="line">    variables: &#123;</span><br><span class="line">      gradeId</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>来我们看这一行：<code>query getGrade($gradeId: Int!)</code><br>，变量及其类型需要在操作中申明，并且类型需要和请求定义的类型一致，用一个“$”来表示变量，如果有变量，那么需要给<code>client.query</code>增加<code>variables</code>的参数，对应在 graphql playground 中的操作为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">query getGrade($gradeId: Int!) &#123;</span><br><span class="line">  grade(gradeId: $gradeId) &#123;</span><br><span class="line">    id</span><br><span class="line">    name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还需要在左下方的“QUERY VARIABLES”中增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;gradeId&quot;: 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>“QUERY VARIABLES”比较不起眼，在左下角，和它并列的还有“HTTP HEADERS”，注意不要搞混。<br>到这里大家可能会有个疑问<code>query getGrade($gradeId: Int!)</code>这句里面的“getGrade”是哪来的呢？它其实只是自己定义的一个操作名字，是为了更方便的查询日志和调试，虽然这个名字不影响功能，但是它的定义应该考虑其功能，不应该随便起个名字。下面是反面教材</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export function getGrade(gradeId) &#123;</span><br><span class="line">  return client.query(&#123;</span><br><span class="line">    query: gql&#96;</span><br><span class="line">      query a1($gradeId: Int!) &#123;</span><br><span class="line">        grade(gradeId: $gradeId) &#123;</span><br><span class="line">          id</span><br><span class="line">          name</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#96;,</span><br><span class="line">    variables: &#123;</span><br><span class="line">      gradeId</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改成这样功能一点不受影响，但是为调试和查找日志带来了很大的隐患。</p>
+<p>上面这些呢就已经在前端定义了一个查询接口，我们直接在 src/app.js 中调用一下<br>首先引入方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; getGrade &#125; from &#39;.&#x2F;graphql&#x2F;server&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>function App() {</code> 下增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getGrade(1).then(res &#x3D;&gt; &#123;</span><br><span class="line">  console.log(res);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>控制台就可以打印出数据，那我们接口就调用完成了，只要理解了 query，那 mutation 就可以轻易的举一反三。那么接下来介绍一下其他炫酷的写法</p>
+<h4 id="前端-graphql-react-的炫酷操作"><a href="#前端-graphql-react-的炫酷操作" class="headerlink" title="前端 graphql+react 的炫酷操作"></a>前端 graphql+react 的炫酷操作</h4><ul>
+<li><p>ApolloProvider<br>这个东西可以将之前我们定义的那个<code>client</code>绑定到 react 组件的上下文中，我们改造我们的 src/app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; ApolloProvider &#125; from &#39;react-apollo&#39;;</span><br><span class="line">import logo from &#39;.&#x2F;logo.svg&#39;;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;;</span><br><span class="line">import &#123; client &#125; from &#39;.&#x2F;graphql&#x2F;client&#39;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;ApolloProvider client&#x3D;&#123;client&#125;&gt;</span><br><span class="line">        &lt;header className&#x3D;&quot;App-header&quot;&gt;</span><br><span class="line">          &lt;img src&#x3D;&#123;logo&#125; className&#x3D;&quot;App-logo&quot; alt&#x3D;&quot;logo&quot; &#x2F;&gt;</span><br><span class="line">          &lt;p&gt;</span><br><span class="line">            Edit &lt;code&gt;src&#x2F;App.js&lt;&#x2F;code&gt; and save to reload.</span><br><span class="line">          &lt;&#x2F;p&gt;</span><br><span class="line">          &lt;a</span><br><span class="line">            className&#x3D;&quot;App-link&quot;</span><br><span class="line">            href&#x3D;&quot;https:&#x2F;&#x2F;reactjs.org&quot;</span><br><span class="line">            target&#x3D;&quot;_blank&quot;</span><br><span class="line">            rel&#x3D;&quot;noopener noreferrer&quot;</span><br><span class="line">          &gt;</span><br><span class="line">            Learn React</span><br><span class="line">          &lt;&#x2F;a&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">      &lt;&#x2F;ApolloProvider&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+
+<p>是不是感觉没啥用？不要急，我们认识另一个新组件 Query</p>
+</li>
+<li><p>Query</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; ApolloProvider, Query &#125; from &#39;react-apollo&#39;;</span><br><span class="line">import &#123; gql &#125; from &#39;apollo-boost&#39;;</span><br><span class="line">import logo from &#39;.&#x2F;logo.svg&#39;;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;;</span><br><span class="line">import &#123; client &#125; from &#39;.&#x2F;graphql&#x2F;client&#39;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;ApolloProvider client&#x3D;&#123;client&#125;&gt;</span><br><span class="line">        &lt;Query</span><br><span class="line">          query&#x3D;&#123;gql&#96;</span><br><span class="line">            query getGrade($gradeId: Int!) &#123;</span><br><span class="line">              grade(gradeId: $gradeId) &#123;</span><br><span class="line">                id</span><br><span class="line">                name</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#96;&#125;</span><br><span class="line">          variables&#x3D;&#123;&#123;</span><br><span class="line">            gradeId: 1</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          &#123;(&#123; loading, error, data &#125;) &#x3D;&gt; &#123;</span><br><span class="line">            if (loading) return &lt;p&gt;Loading...&lt;&#x2F;p&gt;;</span><br><span class="line">            if (error) return &lt;p&gt;Error :(&lt;&#x2F;p&gt;;</span><br><span class="line"></span><br><span class="line">            return &lt;p&gt;&#123;data.grade.name&#125;&lt;&#x2F;p&gt;;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &lt;&#x2F;Query&gt;</span><br><span class="line">      &lt;&#x2F;ApolloProvider&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是 ApolloProvider 组件应该放到所有 Query 组件和 Mutation 组件的父级之中，最好呢放在最顶端，这样不需要考虑 client 是否注入到上下文中</p>
+</li>
+</ul>
+<p>这里只是做了一个简单的示例，如果有兴趣，请移步<a href="https://www.apollographql.com/docs/react/essentials/queries/" target="_blank" rel="noopener">官方文档</a>查看更多的用法，</p>
+<h4 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h4><p>apollo-client 从 v2.5 版本开始提供本地状态管理的功能，这一功能完全可以替换 redux，实现所有数据的来源统一。我们了解了 ApolloProvider 组件之后，再看 ApolloConsumer 组件就会容易理解，它其实是把 client 直接绑定到了上下文里面。我们在 src 下面新建一个 components 的文件夹用来存放自定义的一些组件，新建一个 showMore.jsx 的文件，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; ApolloConsumer &#125; from &#39;react-apollo&#39;;</span><br><span class="line"></span><br><span class="line">export const ShowMore &#x3D; () &#x3D;&gt; (</span><br><span class="line">  &lt;ApolloConsumer&gt;</span><br><span class="line">    &#123;client &#x3D;&gt; (</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; client.writeData(&#123; data: &#123; showMore: true &#125; &#125;)&#125;&gt;</span><br><span class="line">        展示更多</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    )&#125;</span><br><span class="line">  &lt;&#x2F;ApolloConsumer&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>紧接着创建 more.jsx，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; Query &#125; from &#39;react-apollo&#39;;</span><br><span class="line">import gql from &#39;graphql-tag&#39;;</span><br><span class="line"></span><br><span class="line">const GET_SHOW_MORE_STATUS &#x3D; gql&#96;</span><br><span class="line">  &#123;</span><br><span class="line">    showMore @client</span><br><span class="line">  &#125;</span><br><span class="line">&#96;;</span><br><span class="line">export const More &#x3D; () &#x3D;&gt; (</span><br><span class="line">  &lt;Query query&#x3D;&#123;GET_SHOW_MORE_STATUS&#125;&gt;</span><br><span class="line">    &#123;(&#123; data &#125;) &#x3D;&gt; &#123;</span><br><span class="line">      if (data &amp;&amp; data.showMore) &#123;</span><br><span class="line">        return &lt;div&gt;我是more&lt;&#x2F;div&gt;;</span><br><span class="line">      &#125;</span><br><span class="line">      return &lt;div &#x2F;&gt;;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &lt;&#x2F;Query&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在 app.js 中引用两个组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; ApolloProvider, Query &#125; from &#39;react-apollo&#39;;</span><br><span class="line">import &#123; gql &#125; from &#39;apollo-boost&#39;;</span><br><span class="line">import logo from &#39;.&#x2F;logo.svg&#39;;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;;</span><br><span class="line">import &#123; client &#125; from &#39;.&#x2F;graphql&#x2F;client&#39;;</span><br><span class="line">import &#123; More &#125; from &#39;.&#x2F;components&#x2F;more&#39;;</span><br><span class="line">import &#123; ShowMore &#125; from &#39;.&#x2F;components&#x2F;showMore&#39;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;ApolloProvider client&#x3D;&#123;client&#125;&gt;</span><br><span class="line">        &lt;Query</span><br><span class="line">          query&#x3D;&#123;gql&#96;</span><br><span class="line">            query getGrade($gradeId: Int!) &#123;</span><br><span class="line">              grade(gradeId: $gradeId) &#123;</span><br><span class="line">                id</span><br><span class="line">                name</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#96;&#125;</span><br><span class="line">          variables&#x3D;&#123;&#123;</span><br><span class="line">            gradeId: 1</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          &#123;(&#123; loading, error, data &#125;) &#x3D;&gt; &#123;</span><br><span class="line">            if (loading) return &lt;p&gt;Loading...&lt;&#x2F;p&gt;;</span><br><span class="line">            if (error) return &lt;p&gt;Error :(&lt;&#x2F;p&gt;;</span><br><span class="line"></span><br><span class="line">            return &lt;p&gt;&#123;data.grade.name&#125;&lt;&#x2F;p&gt;;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &lt;&#x2F;Query&gt;</span><br><span class="line">        &lt;More &#x2F;&gt;</span><br><span class="line">        &lt;ShowMore &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;ApolloProvider&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+
+<p>在页面点击按钮的时候是不是会有变化<br>我们回过头总结一下发现我们通过<code>client.writeData</code>将数据写入到了缓存中，然后通过带有<code>@client</code>指令的字段从内存中获取到了数据。实际上我们更应该通过 mutation 来变更本地数据。我们应当添加我们本地的 resolvers。<br>我们修改 src/graphql/client.js 为下面这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import ApolloClient from &#39;apollo-boost&#39;;</span><br><span class="line">import &#123; InMemoryCache &#125; from &#39;apollo-cache-inmemory&#39;;</span><br><span class="line">import &#123; gql &#125; from &#39;apollo-boost&#39;;</span><br><span class="line"></span><br><span class="line">const cache &#x3D; new InMemoryCache();</span><br><span class="line">&#x2F;&#x2F; 初始化缓存</span><br><span class="line">cache.writeData(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    showMore: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export const client &#x3D; new ApolloClient(&#123;</span><br><span class="line">  uri: &#39;http:&#x2F;&#x2F;localhost:4000&#x2F;graphql&#39;,</span><br><span class="line">  cache,</span><br><span class="line">  resolvers: &#123;</span><br><span class="line">    Query: &#123;</span><br><span class="line">      showMore: (_root, variables, &#123; cache, getCacheKey &#125;) &#x3D;&gt; &#123;</span><br><span class="line">        const getShowMoreStatusQuery &#x3D; gql&#96;</span><br><span class="line">          &#123;</span><br><span class="line">            showMore @client</span><br><span class="line">          &#125;</span><br><span class="line">        &#96;;</span><br><span class="line">        &#x2F;&#x2F; 此处仅仅为了演示cache.readQuery，实际Query中可以不需要showMore</span><br><span class="line">        const data &#x3D; cache.readQuery(&#123; query: getShowMoreStatusQuery &#125;);</span><br><span class="line">        return data.showMore;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Mutation: &#123;</span><br><span class="line">      changeShowMore: (_root, variables, &#123; cache, getCacheKey &#125;) &#x3D;&gt; &#123;</span><br><span class="line">        const getShowMoreStatusQuery &#x3D; gql&#96;</span><br><span class="line">          &#123;</span><br><span class="line">            showMore @client</span><br><span class="line">          &#125;</span><br><span class="line">        &#96;;</span><br><span class="line">        cache.writeQuery(&#123;</span><br><span class="line">          query: getShowMoreStatusQuery,</span><br><span class="line">          data: &#123;</span><br><span class="line">            showMore: !!variables.showMoreStatus</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>首先我们初始化缓存中的<code>showMoreStatus</code>，然后在 resolvers 中定义了这个字段的 query 和 mutation，接着我们修改 src/components/showMore.jsx 文件为下面内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; Mutation &#125; from &#39;react-apollo&#39;;</span><br><span class="line">import &#123; gql &#125; from &#39;apollo-boost&#39;;</span><br><span class="line"></span><br><span class="line">const SHOW_MORE &#x3D; gql&#96;</span><br><span class="line">  mutation changeShowMore($showMoreStatus: Int!) &#123;</span><br><span class="line">    changeShowMore(showMoreStatus: $showMoreStatus) @client</span><br><span class="line">  &#125;</span><br><span class="line">&#96;;</span><br><span class="line">export const ShowMore &#x3D; () &#x3D;&gt; (</span><br><span class="line">  &lt;Mutation mutation&#x3D;&#123;SHOW_MORE&#125;&gt;</span><br><span class="line">    &#123;addTodo &#x3D;&gt; (</span><br><span class="line">      &lt;button</span><br><span class="line">        onClick&#x3D;&#123;() &#x3D;&gt; &#123;</span><br><span class="line">          addTodo(&#123; variables: &#123; showMoreStatus: 1 &#125; &#125;);</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">        展示更多</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    )&#125;</span><br><span class="line">  &lt;&#x2F;Mutation&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们对内存中数据的修改改成使用 mutation 的方式，注意操作本地需要<code>@client</code></p>
+<p>这样我们简易的本地缓存就搭建好了。根据上一节课我们讲到的 typeDefs 里面任何字段我们都可以重新实现一遍，那么我们也能猜到，任何字段我们都可以实现成本地缓存，只要在前端的 resolvers 中定义实现，那么请求时加上<code>@client</code>就会去本地获取，比如这个 query</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grade(gradeId: 1) &#123;</span><br><span class="line">   id</span><br><span class="line">   name @client</span><br><span class="line">   classes &#123;</span><br><span class="line">     id</span><br><span class="line">     name</span><br><span class="line">     students &#123;</span><br><span class="line">       id</span><br><span class="line">       name</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>那我只需要在本地的 reolvers 中增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Grade: &#123;</span><br><span class="line">  name: () &#x3D;&gt; &#39;我从本地来&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>即可。</p>
+<h4 id="课件地址"><a href="#课件地址" class="headerlink" title="课件地址"></a>课件地址</h4><p><a href="https://github.com/yangjiagongzi/graphql-study" target="_blank" rel="noopener">https://github.com/yangjiagongzi/graphql-study</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/graphql/">#graphql</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- After footer scripts -->
+
+<script src="/js/jquery.js"></script>
+ 
+<script src="/js/tweenmax.js"></script>
+ 
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

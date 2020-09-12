@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--Description-->
+  
+  <meta
+    name="description"
+    content="计算机底层是运行在二进制基础上的，高级语言所有强大的功能最后都会在计算机底层转为二进制执行。因此，基于二进制数据在运行位运算的时候远比其它数学运算、布尔操作等快得多。
+什么是“位”我们知道个位十位百位，位运算就是针对这个”数位”进行运算，对于计算机来说，位就是二进制的数位，运算符不是加减乘除，而是："
+  />
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near" />
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="编程基础(三)——位运算" />
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客" />
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary" />
+    
+
+  <!-- Title -->
+  
+  <title>编程基础(三)——位运算 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom Fonts -->
+  <link
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link
+    href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css"
+    type="text/css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/09/15/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%B8%89)%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/">
+                编程基础(三)——位运算
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-09-15</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/编程基础/">编程基础</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>计算机底层是运行在二进制基础上的，高级语言所有强大的功能最后都会在计算机底层转为二进制执行。因此，基于二进制数据在运行位运算的时候远比其它数学运算、布尔操作等快得多。</p>
+<h3 id="什么是“位”"><a href="#什么是“位”" class="headerlink" title="什么是“位”"></a>什么是“位”</h3><p>我们知道个位十位百位，位运算就是针对这个”数位”进行运算，对于计算机来说，位就是二进制的数位，运算符不是加减乘除，而是：按位与（AND，&amp;）、按位或（OR，|）、按位异或（XOR，^）、按位取反（NOT，~）、移位运算 （&lt;&lt;, &gt;&gt;, &gt;&gt;&gt;）。</p>
+<h4 id="按位与（AND，-amp-）"><a href="#按位与（AND，-amp-）" class="headerlink" title="按位与（AND，&amp;）"></a>按位与（AND，&amp;）</h4><blockquote>
+<p>当两个操作数对应位数都是 1 时，则在该位返回 1，否则则在该位返回 0；</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &amp; 4     &#x2F;&#x2F; 0,     1 &amp; 100 -&gt; 000</span><br><span class="line">3 &amp; 5     &#x2F;&#x2F; 1,     11 &amp; 101 -&gt; 001</span><br></pre></td></tr></table></figure>
+
+<p>什么意思呢？就是我们先把要进行运算的两个数转成二进制的，比如<code>1 &amp; 4</code>，转成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1    &#x3D;》   1</span><br><span class="line">4    &#x3D;》 100</span><br></pre></td></tr></table></figure>
+
+<p>那好我们看一共有三位，这三位我们在十进制中叫”个位””十位””百位”，但是在二进制中不应该这么叫，那我们暂时就叫”第 0 位””第 1 位””第 2 位”，那我们假想有三个开关，当两个操作数对应位数都是 1 时，则在该位返回 1，即打开结果对应位置的开关，否则关上开关。我们看”第 0 位”：一个 1 一个 0，应该是关上开关，那结果的最后一位是 0，再接着”第 1 位”和”第 2 位”也都应该关上开关，那最后得到的结果就是<code>000</code>。总结起来就是对应位置上的开关都开着那结果相对应的位置开关就打开，只要对应位置上有一个开关没打开，那结果相对应的位置开关就关闭。</p>
+<p>好了，这个运算知道了，但是大家可能要问了，这样算有啥意义呢？想不到能用在哪啊？别急，我们先把其他的几个运算符讲完。</p>
+<h4 id="按位或（OR，-）"><a href="#按位或（OR，-）" class="headerlink" title="按位或（OR，|）"></a>按位或（OR，|）</h4><p>当两个操作数对应位数中至少有一个是 1 时，则在该位返回 1，否则则在该位返回 0；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 | 4     &#x2F;&#x2F; 5,     1 | 100 -&gt; 101</span><br><span class="line">3 | 5     &#x2F;&#x2F; 7,     11 | 101 -&gt; 111</span><br></pre></td></tr></table></figure>
+
+<p>通俗的讲就是对应位置只要有一个开关打开着那就把结果的对应位置开关打开。</p>
+<h4 id="按位异或（XOR，-）"><a href="#按位异或（XOR，-）" class="headerlink" title="按位异或（XOR，^）"></a>按位异或（XOR，^）</h4><p>当两个操作数对应位数中两个数中，一个为 1，一个为 0，则在该位返回 1，否则则在该位返回 0；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 ^ 4     &#x2F;&#x2F; 5,   1 ^ 100 -&gt; 101</span><br><span class="line">3 ^ 5     &#x2F;&#x2F; 6,   11 ^ 101 -&gt; 110</span><br></pre></td></tr></table></figure>
+
+<p>通俗的讲就是对应位置两个开关状态不一样那就把结果的对应位置开关打开，否则就关上。</p>
+<h4 id="按位取反（NOT，-）"><a href="#按位取反（NOT，-）" class="headerlink" title="按位取反（NOT，~）"></a>按位取反（NOT，~）</h4><p>在操作数对应位置，是 1 则在该位返回 0，否则则在该位返回 1；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~1        &#x2F;&#x2F; -2,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为补码存在的原因，这里可能和期望的有所不同，我们可以看看这篇文章<a href="https://yangjiagongzi.github.io/2019/09/08/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%BA%8C)%E2%80%94%E2%80%94%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81/">传送门:编程基础(二)——原码，反码，补码</a></p>
+</blockquote>
+<p>大家会注意到这个运算符是个一元运算符，就是它跟一个操作数进行运算，我们常见的 js 一元运算符有：++、–等。这个运算符通俗来讲，就是要进行运算的这个数每个位置上正在开着的开关关上，正在关着的开关打开就得到了结果。<code>1</code>转成二进制就是<code>1</code>，按理说<code>~1</code>应该结果是<code>0</code>，但是<code>01</code>也是<code>1</code>，<code>001</code>也是 1，它前面的<code>0</code>数量不同得出的结果是不同的，这个问题我们在讲补码的时候在详细讲，现在大家先理解运算符的概念。</p>
+<h4 id="移位运算-（-lt-lt-gt-gt-gt-gt-gt-）"><a href="#移位运算-（-lt-lt-gt-gt-gt-gt-gt-）" class="headerlink" title="移位运算 （&lt;&lt;, &gt;&gt;, &gt;&gt;&gt;）"></a>移位运算 （&lt;&lt;, &gt;&gt;, &gt;&gt;&gt;）</h4><p>移位运算的成员有点多啊!</p>
+<ul>
+<li><p>左移运算符（&lt;&lt;）</p>
+<p>按二进制形式把所有的数字向左移动对应的位数，高位移出(舍弃)，低位的空位补零。</p>
+<p>低位的空位补零好理解，什么叫高位移出舍弃？<br>是这样子的，如果我就有一个开关，开启状态代表数字<code>1</code>，那么我左移一位也就是<code>1&lt;&lt;1</code>,会有什么问题呢？问题就是我就一个开关，左移一位放不下，那就不放了，低位补 0，这就是高位移出。</p>
+</li>
+<li><p>右移运算符（&gt;&gt;）</p>
+<p>按二进制形式把所有的数字向右移动对应位移位数，低位移出(舍弃)，高位的空位补符号位，即正数补零，负数补 1。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/底层/">#底层</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- After footer scripts -->
+
+<script src="/js/jquery.js"></script>
+ 
+<script src="/js/tweenmax.js"></script>
+ 
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--Description-->
+  
+  <meta
+    name="description"
+    content="我们回忆一下上节课的内容，计算机的减法、乘法和除法都是通过加法来实现的，并且我们留了一个问题：计算机中负数如何表示。复习上节课内容：编程基础(一)——二进制
+为了表示负数，引入了一个符号位的概念。
+符号位如果一个二进制数是带符号位的，那么最高位是 0 代表正数，最高为是 1 代表负数。我来解释下这句"
+  />
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near" />
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="编程基础(二)——原码，反码，补码" />
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客" />
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary" />
+    
+
+  <!-- Title -->
+  
+  <title>编程基础(二)——原码，反码，补码 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link
+    rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom Fonts -->
+  <link
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link
+    href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css"
+    type="text/css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/09/08/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%BA%8C)%E2%80%94%E2%80%94%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81/">
+                编程基础(二)——原码，反码，补码
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-09-08</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/编程基础/">编程基础</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>我们回忆一下上节课的内容，计算机的减法、乘法和除法都是通过加法来实现的，并且我们留了一个问题：<code>计算机中负数如何表示</code>。复习上节课内容：<a href="https://yangjiagongzi.github.io/2019/09/01/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%B8%80)%E2%80%94%E2%80%94%E4%BA%8C%E8%BF%9B%E5%88%B6/">编程基础(一)——二进制</a></p>
+<p>为了表示负数，引入了一个符号位的概念。</p>
+<h2 id="符号位"><a href="#符号位" class="headerlink" title="符号位"></a>符号位</h2><p>如果一个二进制数是带符号位的，那么最高位是 0 代表正数，最高为是 1 代表负数。<br>我来解释下这句话：</p>
+<blockquote>
+<p>什么叫如果一个二进制数是带符号位的？一个字节存 8 位二进制数，假设一个字节中存着一个数<code>10000011</code>，如果把它看作带符号的数，那它的最高位的<code>1</code>代表的就是负数，这个数就是<code>-0000011</code>，即<code>-3</code>；如果把它看作不带符号的数，那它就是<code>131</code>。那看作带不带符号是谁决定的呢？是编译器决定的，所以一个数到底是有符号数还是无符号数，计算机并不知道，这是由你来决定的，当你认为你要处理的数是有符号的，那么你就用那一套处理有符号数的指令，当你认为你要处理的数是无符号的，那就用处理无符号数的那一套指令。如果一个数是有符号数，那它的最高位表示符号后，它所能表示的数据范围就会发生变化，比如一个字节可以表示的无符号数为<code>0~255</code>，而可以表示的有符号数为<code>-128~127</code>。怎么告诉计算机你声明的变量是有符号还是无符号呢？c 语言中有<code>signed</code>和<code>unsigned</code>前缀区别，更加底层一点：汇编中是没有进行区别的，比如：你想在一个字节中输入一个有符号数，那么这个数就别超过<code>-128~+127</code>，想输入无符号数，要保证数值在<code>0~255</code>之间。如果你输入了<code>236</code>，你还要说你输入的是有符号数，那么你肯定错了，因为有<code>符号数236</code>至少要两个字节来存放。</p>
+</blockquote>
+<h3 id="机器数"><a href="#机器数" class="headerlink" title="机器数"></a>机器数</h3><p>我们知道计算机的存储和计算都是基于二进制进行的，例如在一字节中存一个数<code>3</code>，那么在内存中的形式就是<code>00000011</code>，我们会理所应当的认为存<code>-3</code>，就是把符号位变成 1，即<code>10000011</code>，其实不是，我们先知道不是就行，具体怎么存我们后面会讲到，我们现在明白一个概念：<code>机器数</code>。</p>
+<blockquote>
+<p>什么是机器数：是数字在计算机中的二进制表示形式，有两个特点：一是符号数字化，二是其数的大小受机器字长的限制。</p>
+<ul>
+<li>符号数字化：即用符号位表示数字的正负。</li>
+<li>其数的大小受机器字长的限制：机器内部设备一次能表示的二进制位数叫机器的字长，一台机器的字长是固定的。字长 8 位叫一个字节（Byte），机器字长一般都是字节的整数倍，如字长 8 位、16 位、32 位、64 位。</li>
+</ul>
+</blockquote>
+<p>现在我们只要明白机器数就是将数表示成二进制并且将符号也用数字表示。</p>
+<h3 id="真值"><a href="#真值" class="headerlink" title="真值"></a>真值</h3><p>真值就是带符号位的机器数对应的真正数值。比如<code>3</code>的 8 位机器数为<code>00000011</code>，真值为<code>3</code>，<code>-3</code>的 8 位机器数为<code>10000011</code>，真值为<code>131</code>（<code>10000011</code>转为十进制等于 131）</p>
+<h2 id="原码，反码，补码"><a href="#原码，反码，补码" class="headerlink" title="原码，反码，补码"></a>原码，反码，补码</h2><h3 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h3><blockquote>
+<p>是最简单的机器数表示法。用最高位表示符号位，<code>1</code>表示负号，<code>0</code>表示正号。其他位存放该数的二进制的绝对值。</p>
+</blockquote>
+<p>我们以 8 位带符号数举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">0    &#x3D;&gt;    00000000</span><br><span class="line">1    &#x3D;&gt;    00000001</span><br><span class="line">2    &#x3D;&gt;    00000010</span><br><span class="line">3    &#x3D;&gt;    00000011</span><br><span class="line">4    &#x3D;&gt;    00000100</span><br><span class="line">5    &#x3D;&gt;    00000101</span><br><span class="line">6    &#x3D;&gt;    00000110</span><br><span class="line">7    &#x3D;&gt;    00000111</span><br><span class="line">-0   &#x3D;&gt;    10000000</span><br><span class="line">-1   &#x3D;&gt;    10000001</span><br><span class="line">-2   &#x3D;&gt;    10000010</span><br><span class="line">-3   &#x3D;&gt;    10000011</span><br><span class="line">-4   &#x3D;&gt;    10000100</span><br><span class="line">-5   &#x3D;&gt;    10000101</span><br><span class="line">-6   &#x3D;&gt;    10000110</span><br><span class="line">-7   &#x3D;&gt;    10000111</span><br></pre></td></tr></table></figure>
+
+<p>虽然 0 有两种表示方法，但是直观易懂。但是如果计算正数和负数之间的加法会出现问题：<code>2 + (-2) = 00000010 + 10000010 = 10000100 = -4</code>。试过其他情况会发现除了正数与正数相加不会出错，正数和负数、负数和负数相加都会引起错误，它的运算局限性很大，不能直接参加运算，所以出现了反码。</p>
+<h3 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h3><p>反码的设计思想是基于“一个负数是其绝对值的相反数”来进行的：</p>
+<blockquote>
+<p>正数的反码还是等于原码；负数的反码是在其原码的基础上, 符号位不变，其余各个位取反。<br>上面说的有点抽象，我们举个例子：</p>
+</blockquote>
+<p>我们以 8 位带符号数举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1    &#x3D;&gt;   00000001(原码)   &#x3D;&gt;   00000001(正数反码还是原码)</span><br><span class="line">-1   &#x3D;&gt;   10000001(原码)   &#x3D;&gt;   11111110(符号位不变，其余各个位取反。)</span><br></pre></td></tr></table></figure>
+
+<p>那我们再来算算<code>2 + (-2)</code>，2 的反码等于原码，为<code>00000010</code>，-2 的反码为<code>11111101</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 + (-2) &#x3D; 00000010 + 11111101 &#x3D; 11111111</span><br></pre></td></tr></table></figure>
+
+<p>而<code>11111111</code>正好是<code>-0</code>的反码。</p>
+<p>我们在算算其他的，比如<code>2 + (-1)</code>，2 的反码为<code>00000010</code>，-1 的反码为<code>11111110</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 + (-1) &#x3D; 00000010 + 11111110 &#x3D; 100000000</span><br></pre></td></tr></table></figure>
+
+<p>我们看到结果的位数已经超过 8 位了，如果我们直接舍弃超出的<code>1</code>，得到了<code>00000000</code>，很明显不太对。其实这里需要用到<code>循环进位</code>，这个方法应用于二进制的反码加减法运算。</p>
+<p><font color=#87CEFA>反码的符号位相加后，如果有进位出现(不包括溢出产生的进位)，则要把它送回到最低位去相加，这就是循环进位。</font></p>
+<p>上面例子中结果<code>100000000</code>中最高位的<code>1</code>就是进位的 1，所以它应该送到最低位去相加，即<code>00000000 + 1 = 00000001</code>。</p>
+<p><font color=#87CEFA>那什么是“溢出产生的进位”呢？</font> 就是结果已经超出了能表示的范围，比如 8 位带符号反码可以表示的范围为<code>-127~+127</code>，如果结果大于了 127 或者小于了-127，那就已经溢出了，具体二进制的表现为：两正数相加后符号位变成了 1 就是溢出了，两负数相加符号位变成了 0 就是溢出了。</p>
+<p>到这里我们总结一下反码的运算方法：</p>
+<ul>
+<li>反码运算时，其符号位与数值一起参加运算。</li>
+<li>反码的符号位相加后，如果有进位出现，则要把它送回到最低位去相加（循环进位）。</li>
+<li>用反码运算，其运算结果亦为反码。在转换为真值时，若符号位为 0，数位不变；若符号位为 1，应将结果求反才是其真值。</li>
+</ul>
+<p>总体看来虽然反码可以直接参加运算，但是运算方法较为复杂，我们接下来介绍“补码”，一个关键的编码。</p>
+<h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p>我们先说补码的求法：</p>
+<ul>
+<li>正整数的补码是其二进制表示，与原码相同。</li>
+<li>求负整数的补码，将其原码除符号位外的所有位取反（0 变 1，1 变 0，符号位为 1 不变）后加 1。</li>
+</ul>
+<p>看到求负数的补码方法后我们是不是感觉似曾相识，没错，负数的补码就是它的反码加 1。<font color=#87CEFA>但这只是求法，并不是定义，补码正好等于反码加 1，补码的产生不依赖与反码。</font>首先大家要搞清楚这一点，在求补码的过程中，反码不是必须的。求法我们记不住也无所谓，只要我们理解了它的定义，那自然就会知道它的求法。</p>
+<p>在理解补码之前，我们需要先了解模的概念：</p>
+<h4 id="模"><a href="#模" class="headerlink" title="模"></a><font color=#87CEFA>模</font></h4><p>首先我们要明白计算机的存储是有限的，因此计算机的计算范围也是有限的，前面的介绍我们可以知道一个机器字长为 8 位的计算机的计算范围为<code>0~255</code>，那么我们想想，255+1 等于多少，<code>255 + 1 = 11111111 + 00000001 = 100000000</code>，结果需要 9 位来存储，但是 8 位机器字长的计算机只能存放后 8 位，最前面的<code>1</code>会被舍弃，也就是溢出了，结果变成了<code>00000000</code>，也就是 0，<code>255+1=0</code>用数学思维比较难以理解，但是我们可以这样理解：一个钟表时针现在在 10 点，再过 3 小时应该到 13 点，但是钟表放不下 13 点，产生了溢出，就变成了 1 点，并且我们也能明白相对于只有 12 个刻度的钟表来说，13 点就等于 1 点。同样的，对于 8 位机器字长的计算机来说，255+1 就等于 0。<br>那么我们可以透过这个现象看一下本质：钟表表示的是准确的时间吗？并不是，他只是表示的一个 1-12（或者 0-11）之间的数，这个数是准确的时间减去 n 个 12 后的数，即<code>模的余数</code>。同理，计算机也是这样的，计算机表示的数也只是一个数的模的余数，至于模是多少，时钟的模就是它的计量范围 12，而 8 位机器字长的计算机的模就是 2^8=256。 8 位机器字长的计算机表示数字 1 的时候，其实是表示的数字 1 相对于模 256 的余数，也就是 1，那么有人会问了，如果想要表示 300 咋办？确实，如果单纯用 8 位机器字长的计算机表示 300 是表示不了的，其实，是可以的，我们可以用两个 8 位来存储这个数，类似与一个田字格只能写一个汉字，不够的话我们就用两个田字格，不过这里大家不用深究，大家就当作我们现在的计算机只有 8bit 大小，数据范围只能存<code>00000000~11111111</code>。</p>
+<blockquote>
+<p>“模”是指一个计量系统的计数范围。如时钟等。计算机也可以看成一个计量机器，它也有一个计量范围，即都存在一个“模”。例如：时钟的计量范围是 0 ～ 11，模=12。表示 n 位的计算机计量范围是 0 ～ 2^(n)-1，模=2^(n)。“模”实质上是计量器产生“溢出”的量，它的值在计量器上表示不出来，计量器上只能表示出模的余数。任何有模的计量器，均可化减法为加法运算。</p>
+</blockquote>
+<p>模的概念我们已经理解了，那为啥说<font color=#87CEFA>任何有模的计量器，均可化减法为加法运算。</font> 这里我们可以想想，对于一个时钟来说，从 10 点到 9 点，可以减 1 点或者加 11 点，最终结果都是 9 点，即类似于<code>10 - 1 = (10 + 11) (mod 12) = 9</code>。这就将减去<code>1</code>变成了加上<code>11</code>，也就是加上<code>-1</code>等于加上<code>11</code>，也就是<code>-1</code>等于<code>11</code>，当然这都是基于 12 个刻度的钟表而言。那么我们想想在钟表上<code>-1</code>等于<code>11</code>吗？0 点后退一个点就是<code>11</code>点。但是我们平常不说<code>-1</code>,而说的是<code>11</code>，如果我偏要说呢，我不仅说<code>-1</code>，我还要说<code>-2</code>、<code>-3</code>、<code>-4</code>…那钟表可以变成这样，0 点，1 点，2 点，3 点，4 点，5 点，-6 点(原 6 点)，-5 点(原 7 点)，-4 点(原 8 点)，-3 点(原 9 点)，-2 点(原 10 点)，-1 点(原 11 点)，看到这里是不是想到了什么？没错，就是计算机有符号数和无符号数的表示。只不过这里用补码的方式进行了表示。我们可以知道在钟表上<code>-1=11、-2=10、-3=9</code>…想象一下，如果我们针对钟表定义了一些东西：<font color=#87CEFA>钟表如果没有负数的话能表示 0 ～ 11 的数，如果有负数的话能表示 5 ～-6 的数，并且当用负数表示时，11 就代表-1、6 代表-6…</font> 这就是补码。<font color=#87CEFA>一个字节可以表示的无符号数为<code>0~255</code>，而可以表示的有符号数为<code>-128~127</code>。并且当用来表示有符号数时，128(二进制为<code>10000000</code>)代表-128，255(二进制为<code>11111111</code>)代表-1</font></p>
+<p>上面的 128(10000000)即为-128 的补码，255(11111111)即为-1 的补码。<br>按照我们上面所讲的，补码应该怎么求呢？我们可以看到正数补码就是它本身，这个我们无需去求，那负数的补码呢？-1 的补码是 00000000 后退一个数，应该是这个范围内最大的数(类似钟表 0-11 表示时，0 点后退一为最大的 11)即 11111111，-2 的补码是范围内第二大的数…总结一下就是负数的补码是这个范围总共多少个数减去负数的绝对值，而范围总共多少个数这个又叫做模，那我们可以得出补码的计算规则：</p>
+<blockquote>
+<p>负数通过模减去它的绝对值，得到它的补码。</p>
+</blockquote>
+<p>而 a 等于模 m 减去一个数 b 在数学上说法是，a 等于 b 对于模 m 的同余数，也就是负数的补码等于它的绝对值相对于模的同余数</p>
+<p>好了好了，这边比较绕一点，大家理解了补码怎么来的就行，那我们计算一下补码的运算：</p>
+<ul>
+<li><code>1 + -2 = 00000001(1的补码)) + 11111110(-2的补码) = 11111111(-1的补码)</code></li>
+<li><code>-1 + -2 = 11111111(-1的补码)) + 11111110(-2的补码) = 11111101(-3的补码)</code></li>
+</ul>
+<blockquote>
+<p>在计算机系统中，数值一律用补码来表示和存储。原因在于，使用补码，可以将符号位和数值域统一处理；同时，加法和减法也可以统一处理。此外，补码与原码相互转换，其运算过程是相同的，不需要额外的硬件电路。</p>
+</blockquote>
+<p>那我们如何方便地求一个数的补码呢？总不能-1 就是最大的数，-2 就是第二大的数这样一个一个来数吧。下面有几种方法来计算一个负数的补码：</p>
+<ul>
+<li><p>将其原码除符号位外的所有位取反（0 变 1，1 变 0，符号位为 1 不变）后加 1。</p>
+<p>比如：-39，8 位二进制原码位<code>10100111</code>，符号位不变，其他位取反后得到<code>11011000</code>，然后加 1，得到<code>11011001</code></p>
+</li>
+<li><p>模减去其绝对值</p>
+<p>8 位的模为 256，减去 39，为 217，因此-39 的补码为 217 的原码，即<code>11011001</code>；或者二进制计算<code>100000000 - 00100111 = 11011001</code></p>
+</li>
+<li><p>原码自低位向高位，尾数的第一个’1’及其右边的’0’保持不变，左边的各位按位取反，符号位不变。</p>
+<p>比如：-39，8 位二进制原码位<code>10100111</code>，自低位向高位第一个’1’就是最后一位，而它右边没有’0’，它保持不变，右边各位按位取反，符号位不变，也可以得到<code>11011001</code></p>
+</li>
+</ul>
+<p><font color=#87CEFA>在一个存在计数范围的循环计量系统中，可以运用模运算把减法转变为加法。</font></p>
+<p>很巧的是，计算机就是一个存在计数范围的计量系统，一台计算机的字长是固定的，它的模相应的也是固定的，而计算机通过存储数据的补码，可以避开减法运算，用加法运算统一实现，这都是补码的功劳。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><font color=#87CEFA>那么讲了这么多，大家知道了原码便于理解，补码便于计算机计算，那大家可能要问了，那还要反码干嘛，虽然反码通过一些它特有的运算方式也可以进行运算，但是补码已经可以准确实现减法运算，反码存在没有任何意义啊，我也对这个问题存在过疑惑，并且很多资料都表明反码通常是用来由原码求补码或者由补码求原码的过渡码(后来发现这是不严谨的)。我们通过今天的学习可以知道补码的概念和反码没有关系，而且原码和补码互相转换并不需要反码的参与。其实反码和补码的出现是数字计算早期对于负数表示的不同争论，一部分人支持用反码表示负数，比如：’PDP-1’、’CDC 160 series’、’CDC 3000 series’、’CDC 6000 series’、’UNIVAC 1100 series’ 和 ‘LINC’这些计算机就是使用反码表示负数；而一部分人支持用补码表示负数，比如：’IBM System/360’、’GE-600 series’、’PDP-6’ 和 ‘PDP-10’这些计算机则用补码表示负数。后来随着集成电路技术的进步，由于补码在硬件实现上更具优势，所以基本上所有的计算机都采用了补码的方式来表示负数，这就导致这个体系在今天占据了主导地位，如今计算机系统中，数值一律用补码来表示和存储。你很难再看到一台以反码表示和存储的计算机。但是一些用于快速标量算法的加密算法用反码比用补码运行得快得多，主要用于封装信号处理单元或实时信号分析系统。因为这一优势，反码系统将继续存在并得到利用。</font></p>
+<p>参考资料；<a href="https://en.wikipedia.org/wiki/Signed_number_representations" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Signed_number_representations</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/底层/">#底层</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- After footer scripts -->
+
+<script src="/js/jquery.js"></script>
+ 
+<script src="/js/tweenmax.js"></script>
+ 
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>
