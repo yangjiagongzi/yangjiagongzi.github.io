@@ -19,7 +19,7 @@ body {
   z-index: 100;
 }
 .bg-gradient {
-  background: linear-gradient(125deg, #000, #111, #222, #333);
+  background: linear-gradient(125deg, #000, #222, #444);
   width: 100vw;
   height: 100vh;
   position: fixed;
