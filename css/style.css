@@ -9,18 +9,23 @@ body {
     font-size: 0.7em;
   }
 }
+.hidden {
+  display: none;
+}
+#spring-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
 .bg-gradient {
-  background: #192224;
-  background: -moz-linear-gradient(top, #192224 0%, #21728b 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #192224), color-stop(100%, #21728b));
-  background: -webkit-linear-gradient(top, #192224 0%, #21728b 100%);
-  background: -o-linear-gradient(top, #192224 0%, #21728b 100%);
-  background: -ms-linear-gradient(top, #192224 0%, #21728b 100%);
-  background: linear-gradient(to bottom, #192224 0%, #21728b 100%);
+  background: linear-gradient(125deg, #000, #111, #222, #333);
   width: 100vw;
   height: 100vh;
   position: fixed;
   z-index: -2;
+  background-size: 400%;
+  animation: my 15s infinite;
 }
 .bg-pattern {
   background: url("../img/bg-pattern.png") repeat;
@@ -67,6 +72,50 @@ a:hover {
     height: 60px;
   }
 }
+@-moz-keyframes my {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-webkit-keyframes my {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-o-keyframes my {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes my {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 header {
   padding-top: 100px;
 }
@@ -79,11 +128,8 @@ header .logo a:link,
 header .logo a:visited,
 header .logo a:active {
   border-bottom: none;
-}
-header .logo .logo-icon {
-  font-size: 60px;
-  color: #d7ecff;
-  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #228dff;
+  display: block;
+  height: 120px;
 }
 header .logo img {
   width: 100px;
