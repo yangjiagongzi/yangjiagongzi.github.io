@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <!-- Head tag -->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--Description-->
   
-  <meta
-    name="description"
-    content="计算机中的二进制
+  <meta name="description" content="计算机中的二进制
 1tb = 1024gb
 
 
@@ -25,34 +23,33 @@
 
 1b = 8bit
 
-上面这些想必大家已经知道了，这个单位bit是信息的最小单位，一个它所提供的信息量就是两个选项中的一个，0 或 1，这两个值也可以被解释为逻辑值"
-  />
+上面这些想必大家已经知道了，这个单位bit是信息的最小单位，一个它所提供的信息量就是两个选项中的一个，0 或 1，这两个值也可以被解释为逻辑值">
   
 
   <!--Author-->
   
-  <meta name="author" content="Near" />
+  <meta name="author" content="Near">
   
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="编程基础(一)——二进制" />
+  <meta property="og:title" content="编程基础(一)——二进制">
   
 
   <!--Open Graph Description-->
   
 
   <!--Open Graph Site Name-->
-  <meta property="og:site_name" content="杨家公子的博客" />
+  <meta property="og:site_name" content="杨家公子的博客">
 
   <!--Type page-->
   
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="article">
   
 
   <!--Page Cover-->
    
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary">
     
 
   <!-- Title -->
@@ -60,35 +57,20 @@
   <title>编程基础(一)——二进制 - 杨家公子的博客</title>
 
   <!-- Bootstrap Core CSS -->
-  <link
-    rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
-    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
   <!-- Custom Fonts -->
-  <link
-    href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-    rel="stylesheet"
-    type="text/css"
-  />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
   <!-- Gallery -->
-  <link
-    href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css"
-    type="text/css"
-    rel="stylesheet"
-  />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
 
   <!-- Custom CSS -->
-  
-<link rel="stylesheet" href="/css/style.css">
-
-<meta name="generator" content="Hexo 4.2.0"></head>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 
 
   <body>
@@ -149,7 +131,7 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2019/09/01/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%B8%80)%E2%80%94%E2%80%94%E4%BA%8C%E8%BF%9B%E5%88%B6/">
+            <a href="/2019/09/01/编程基础(一)——二进制/">
                 编程基础(一)——二进制
             </a>
         </h1>
@@ -190,24 +172,29 @@
 <h3 id="计算机怎么进行运算"><a href="#计算机怎么进行运算" class="headerlink" title="计算机怎么进行运算"></a>计算机怎么进行运算</h3><p>上面我们知道了计算机是怎么存储的，那计算是怎么计算的呢？要计算 1+2 那应该先把 1 和 2 先存下来，然后再计算，首先我们要知道一个概念：<code>计算机只会做加法，不会减法，乘法，除法等等等等</code>。</p>
 <h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><p>那减法是如何做的呢？减一个数等于加上它的相反数。<code>2-1=2+(-1)</code>,那减法的问题就变成了<code>负数如何在计算机中表示</code>？这个问题可以看我们的另一篇文章，“<a href="https://yangjiagongzi.github.io/2019/09/08/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%BA%8C)%E2%80%94%E2%80%94%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81/">传送门:编程基础(二)——原码，反码，补码</a>”。</p>
 <h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><p>乘法呢？乘法是通过加法和移位运算来实现的。移位运算可以看我们的另一篇文章，“<a href="https://yangjiagongzi.github.io/2019/09/15/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80(%E4%B8%89)%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/">传送门:编程基础(三)——位运算</a>，我们先简单说一下乘法的实现。我们小时候计算乘法的时候怎么计算的呢？比如计算<code>11 * 9</code>，分解成<code>11 * 9 = 10 * 9 + 1 * 9</code>，二进制也类似。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1011                           1000           10            1</span><br><span class="line">1001     *         &#x3D;&#x3D;&gt;         1001 *   +   1001 *   +   1001 *</span><br><span class="line">--------------                -------      -------      -------</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1011                           1000           10            1</span><br><span class="line">1001     *         ==&gt;         1001 *   +   1001 *   +   1001 *</span><br><span class="line">--------------                -------      -------      -------</span><br></pre></td></tr></table></figure>
 
 <p>二进制乘法可以这样理解：<code>1011 * 1001 = 1000 * 1001 + 10 * 1001 + 1 * 1001</code>，接着计算<code>1000 * 1001</code>、<code>10 * 1001</code>，这边用到了移位运算，<code>1000 * 1001</code>等于<code>1001</code>左移 3 位，即<code>1001000</code>，而<code>10 * 1001</code>等于<code>1001</code>左移 1 位，即<code>10010</code>，最后加起来<code>1001000 + 10010 + 1001 = 1100011</code>，转为二进制即为<code>99</code>，这只是为了便于理解而这样举例子，其实计算机并没有进行分解，它的运算通过进行移位运算、加法运算和寄存器存储进行的。具体执行方法感兴趣的同学可以自己查查看。</p>
 <h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>除法就是乘法的逆运算，我们直接看一个不能整除的，比如<code>20/9</code>，二进制的运算就是<code>10100/1001</code>。计算方法就是从被除数(<code>10100</code>)<code>最左位</code>加上<code>余数寄存器</code>的值与除数进行比较，看起来比较晦涩，那我们直接上例子：</p>
 <ul>
 <li><p>初始余数寄存器为 0</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">10100      1001     0</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">10100      1001     0</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>被除数最左位<code>1</code> + 余数寄存器<code>0</code>=<code>1</code>，小于除数<code>1001</code>，商中存入<code>0</code>，然后被除数左移一位，变成<code>0100</code>，余数放到寄存器中存起来，即<code>1</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">0100       1001     1         0</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">0100       1001     1         0</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>接着比较最左位<code>0</code> + 余数寄存器<code>1 &lt;&lt; 1</code>(这里<code>1 &lt;&lt; 1</code>的原因是因为余数的位数比最高位高出一位，余数理应左移一位后再加)=<code>10</code>,依然小于除数<code>1001</code>，商中存入<code>0</code>，然后被除数左移一位，将余数放入寄存器。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数     商</span><br><span class="line">100        1001     10       00</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接着比较最左位<code>1</code> + 余数寄存器<code>10 &lt;&lt; 1</code>=<code>101</code>,依然小于除数<code>1001</code>，商中存入<code>0</code>，然后被除数左移一位，将余数放入寄存器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">00         1001     101       000</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">00         1001     101       000</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>接着比较最左位<code>0</code> + 余数寄存器<code>101 &lt;&lt; 1</code>=<code>1010</code>,大于除数<code>1001</code>，这里大于以后商中存入 1，然后被除数左移一位，将余数<code>1010-1001=1</code>放入寄存器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">0          1001     1         0001</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">0          1001     1         0001</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>接着比较最左位<code>0</code> + 余数寄存器<code>1 &lt;&lt; 1</code>=<code>10</code>,小于除数<code>1001</code>，商中存入<code>0</code>，然后被除数左移一位，将余数放入寄存器。到这被除数位数没了，就已经算完了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">           1001     10        00010</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">被除数      除数      余数      商</span><br><span class="line">           1001     10        00010</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>转成 10 进制就是余数为 2，商为 2</p>
 </li>
 </ul>
@@ -243,16 +230,8 @@
 
 
     <!-- After footer scripts -->
-    
-<script src="/js/jquery.js"></script>
- 
-<script src="/js/tweenmax.js"></script>
- 
-<script src="/js/main.js"></script>
-
-
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
 <script src="/js/logo.js"></script>
-
 
   </body>
 </html>

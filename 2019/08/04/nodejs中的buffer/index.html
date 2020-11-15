@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <!-- Head tag -->
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--Description-->
   
-  <meta
-    name="description"
-    content="Buffer
-Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有处理二进制数据的能力，因为最初时候并没有处理视频、音频、在线绘画等的业务场景，但是随着互联网发展，简单的文字图片展示功能已经不能满足用户的业务需求，音视频等二进制数据一直由 flash 代为处理"
-  />
+  <meta name="description" content="Buffer
+Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有处理二进制数据的能力，因为最初时候并没有处理视频、音频、在线绘画等的业务场景，但是随着互联网发展，简单的文字图片展示功能已经不能满足用户的业务需求，音视频等二进制数据一直由 flash 代为处理">
   
 
   <!--Author-->
   
-  <meta name="author" content="Near" />
+  <meta name="author" content="Near">
   
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="nodejs中的buffer" />
+  <meta property="og:title" content="nodejs中的buffer">
   
 
   <!--Open Graph Description-->
   
 
   <!--Open Graph Site Name-->
-  <meta property="og:site_name" content="杨家公子的博客" />
+  <meta property="og:site_name" content="杨家公子的博客">
 
   <!--Type page-->
   
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="article">
   
 
   <!--Page Cover-->
    
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary">
     
 
   <!-- Title -->
@@ -46,35 +43,20 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
   <title>nodejs中的buffer - 杨家公子的博客</title>
 
   <!-- Bootstrap Core CSS -->
-  <link
-    rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
-    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
   <!-- Custom Fonts -->
-  <link
-    href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-    rel="stylesheet"
-    type="text/css"
-  />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
   <!-- Gallery -->
-  <link
-    href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css"
-    type="text/css"
-    rel="stylesheet"
-  />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
 
   <!-- Custom CSS -->
-  
-<link rel="stylesheet" href="/css/style.css">
-
-<meta name="generator" content="Hexo 4.2.0"></head>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 
 
   <body>
@@ -135,7 +117,7 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2019/08/04/nodejs%E4%B8%AD%E7%9A%84buffer/">
+            <a href="/2019/08/04/nodejs中的buffer/">
                 nodejs中的buffer
             </a>
         </h1>
@@ -212,10 +194,10 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 <li><code>Buffer</code>是缓冲器，注意是“缓冲”，而不是“缓存”，缓冲是为了解决速度慢和快的交接问题；速度快的需要通过缓冲区将数据一点一点传给速度慢的区域，例如内存到磁盘。而缓存是速度慢的设备需要通过缓存将经常要用到的数据缓存起来，缓存下来的数据可以提供高速的传输速度给速度快的设备，是为了重复使用。</li>
 </ul>
 <h3 id="Buffer-与字符编码"><a href="#Buffer-与字符编码" class="headerlink" title="Buffer 与字符编码"></a>Buffer 与字符编码</h3><p>当字符串数据被存储入 <code>Buffer</code> 实例或从 <code>Buffer</code> 实例中被提取时，可以指定一个字符编码。<code>Buffer</code>中的数据很单纯，就是 0-255 的数据，它本身是不带编码的，编码是<code>Buffer</code>更上层的数据的规则，比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(Buffer.from(&#39;hello world&#39;, &#39;ascii&#39;));</span><br><span class="line">console.log(Buffer.from(&#39;hello world&#39;, &#39;utf16le&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 打印出来</span><br><span class="line">&lt;Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64&gt;</span><br><span class="line">&lt;Buffer 68 00 65 00 6c 00 6c 00 6f 00 20 00 77 00 6f 00 72 00 6c 00 64 00&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(Buffer.from(&apos;hello world&apos;, &apos;ascii&apos;));</span><br><span class="line">console.log(Buffer.from(&apos;hello world&apos;, &apos;utf16le&apos;));</span><br><span class="line"></span><br><span class="line">// 打印出来</span><br><span class="line">&lt;Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64&gt;</span><br><span class="line">&lt;Buffer 68 00 65 00 6c 00 6c 00 6f 00 20 00 77 00 6f 00 72 00 6c 00 64 00&gt;</span><br></pre></td></tr></table></figure>
 
 <p>同一个字符串使用不同编码传入<code>Buffer</code>后，在<code>Buffer</code>中的数据是不一样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const myBuf &#x3D; Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);</span><br><span class="line">console.log(myBuf.toString(&#39;ascii&#39;));</span><br><span class="line">console.log(myBuf.toString(&#39;hex&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 打印出来</span><br><span class="line">buffer</span><br><span class="line">627566666572</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const myBuf = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);</span><br><span class="line">console.log(myBuf.toString(&apos;ascii&apos;));</span><br><span class="line">console.log(myBuf.toString(&apos;hex&apos;));</span><br><span class="line"></span><br><span class="line">// 打印出来</span><br><span class="line">buffer</span><br><span class="line">627566666572</span><br></pre></td></tr></table></figure>
 
 <p>同一个<code>Buffer</code>，使用不同编码转成字符串也是不一样的</p>
 <p>所以编码其实是写入或输出时对数据进行处理的标准，<code>Buffer</code>自带方法可以运用这些标准对要输入和准备输出的数据进行处理，但是内部数据和这些标准完全没关系。其实就是<code>Buffer</code>里面的数据是给计算机看的，而编码是为了将给计算机看的数据转变成人可以看懂的数据而定义的一套标准，在传入<code>Buffer</code>之前需要把人能看懂的数据转成机器能看懂的，而在传出<code>Buffer</code>之前需要把机器能看懂的数据转成人能看懂的。</p>
@@ -267,16 +249,8 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 
 
     <!-- After footer scripts -->
-    
-<script src="/js/jquery.js"></script>
- 
-<script src="/js/tweenmax.js"></script>
- 
-<script src="/js/main.js"></script>
-
-
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
 <script src="/js/logo.js"></script>
-
 
   </body>
 </html>
