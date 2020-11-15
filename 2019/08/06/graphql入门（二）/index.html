@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-<head>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,66 +77,60 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
-<body>
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
 
-<div class="bg-gradient"></div>
-<div class="bg-pattern"></div>
-
-<!-- Menu -->
-<!--Menu Links and Overlay-->
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
 <div class="menu-bg">
-    <div class="menu-container">
-        <ul>
-            
-            <li class="menu-item">
-                <a href="/">
-                    Home
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/archives">
-                    Archives
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/tags">
-                    Tags
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/categories">
-                    Categories
-                </a>
-            </li>
-            
-        </ul>
-    </div>
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
 </div>
 
 <!--Hamburger Icon-->
 <nav>
-    <a href="#menu"></a>
+  <a href="#menu"></a>
 </nav>
 
-<div class="container">
 
-    <!-- Main Content -->
-    <div class="row">
-    <div class="col-sm-12">
-
-        <!--Title and Logo-->
-        <header>
-    <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
-        
-    </div>
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
 </header>
 
-        <section class="main">
-            
+
+    <section class="main">
+      
 <div class="post">
 
     <div class="post-header">
@@ -161,10 +154,8 @@
 
     <div class="content">
 
-        <!-- Gallery -->
         
 
-        <!-- Post Content -->
         <h3 id="graphql-前端页面的应用"><a href="#graphql-前端页面的应用" class="headerlink" title="graphql 前端页面的应用"></a>graphql 前端页面的应用</h3><h4 id="前端-graphql-简单应用"><a href="#前端-graphql-简单应用" class="headerlink" title="前端 graphql 简单应用"></a>前端 graphql 简单应用</h4><p>上次我们讲到了如何搭建一个简单的 graphql 中间层服务器，<a href="https://yangjiagongzi.github.io/2019/08/05/graphql%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/">复习一下</a>，那接下来我们就需要在前端调用这个服务。首先我们创建一个叫做 “fe-react” 的 react 项目：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app fe-react &amp;&amp; cd fe-react &amp;&amp; npm run start</span><br></pre></td></tr></table></figure>
 
@@ -246,34 +237,25 @@
         </div>
     
 
-    <!-- Comments -->
-    
-
 </div>
-        </section>
+    </section>
+  </div>
+</div>
 
     </div>
-</div>
 
-
-</div>
-
-<!-- Footer -->
-<div class="push"></div>
+    <!-- Footer -->
+    <div class="push"></div>
 
 <footer class="footer-content">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
-      </div>
-    </div>
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
   </div>
 </footer>
 
 
-<!-- After footer scripts -->
-
+    <!-- After footer scripts -->
+    
 <script src="/js/jquery.js"></script>
  
 <script src="/js/tweenmax.js"></script>
@@ -281,7 +263,8 @@
 <script src="/js/main.js"></script>
 
 
+<script src="/js/logo.js"></script>
 
-</body>
 
+  </body>
 </html>

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-<head>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,66 +77,60 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
-<body>
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
 
-<div class="bg-gradient"></div>
-<div class="bg-pattern"></div>
-
-<!-- Menu -->
-<!--Menu Links and Overlay-->
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
 <div class="menu-bg">
-    <div class="menu-container">
-        <ul>
-            
-            <li class="menu-item">
-                <a href="/">
-                    Home
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/archives">
-                    Archives
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/tags">
-                    Tags
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/categories">
-                    Categories
-                </a>
-            </li>
-            
-        </ul>
-    </div>
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
 </div>
 
 <!--Hamburger Icon-->
 <nav>
-    <a href="#menu"></a>
+  <a href="#menu"></a>
 </nav>
 
-<div class="container">
 
-    <!-- Main Content -->
-    <div class="row">
-    <div class="col-sm-12">
-
-        <!--Title and Logo-->
-        <header>
-    <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
-        
-    </div>
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
 </header>
 
-        <section class="main">
-            
+
+    <section class="main">
+      
 <div class="post">
 
     <div class="post-header">
@@ -161,10 +154,8 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 
     <div class="content">
 
-        <!-- Gallery -->
         
 
-        <!-- Post Content -->
         <h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><blockquote>
 <p>Buffer 是什么？首先我们说说 <code>JavaScript</code>，<code>JavaScript</code> 刚开始并没有处理二进制数据的能力，因为最初时候并没有处理视频、音频、在线绘画等的业务场景，但是随着互联网发展，简单的文字图片展示功能已经不能满足用户的业务需求，音视频等二进制数据一直由 flash 代为处理，直到 nodejs 出现了让 <code>JavaScript</code> 第一次能够处理二进制数据的能力————<code>Buffer</code>，server 端的 <code>JavaScript</code> 有了处理二进制数据的能力，但是 client 端依旧无法处理二进制数据，直到 ES2015(es6)中, 才出现了处理二进制数据能力的对象 <code>TypedArray</code>，那 <code>TypedArray</code> 和 <code>Buffer</code> 又有什么关系呢？</p>
 </blockquote>
@@ -258,34 +249,25 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
         </div>
     
 
-    <!-- Comments -->
-    
-
 </div>
-        </section>
+    </section>
+  </div>
+</div>
 
     </div>
-</div>
 
-
-</div>
-
-<!-- Footer -->
-<div class="push"></div>
+    <!-- Footer -->
+    <div class="push"></div>
 
 <footer class="footer-content">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
-      </div>
-    </div>
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
   </div>
 </footer>
 
 
-<!-- After footer scripts -->
-
+    <!-- After footer scripts -->
+    
 <script src="/js/jquery.js"></script>
  
 <script src="/js/tweenmax.js"></script>
@@ -293,7 +275,8 @@ Buffer 是什么？首先我们说说 JavaScript，JavaScript 刚开始并没有
 <script src="/js/main.js"></script>
 
 
+<script src="/js/logo.js"></script>
 
-</body>
 
+  </body>
 </html>

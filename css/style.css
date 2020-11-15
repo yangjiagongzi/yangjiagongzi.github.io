@@ -463,26 +463,6 @@ nav a:active.menu-active:before {
 nav a:hover {
   opacity: 1;
 }
-.wrap-pagination {
-  margin-top: 50px;
-  font-size: 30px;
-  text-align: center;
-  color: #d7ecff;
-}
-.wrap-pagination a {
-  border-bottom: 0;
-  margin: 30px;
-}
-.wrap-pagination a.disabled,
-.wrap-pagination a.disabled:active,
-.wrap-pagination a.disabled:visited,
-.wrap-pagination a.disabled:link,
-.wrap-pagination a.disabled:hover {
-  color: #a9b7c6;
-  opacity: 0.3;
-  text-shadow: none;
-  pointer-events: none;
-}
 footer.footer-content {
   padding-top: 50px;
   width: 100%;
