@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Description-->
+  
+  <meta name="description" content="Union Types 联合类型 “｜”A | B 表示一个类型为 A 或 B 的实体.
+123type A = string;type B = number;type C = A | B;
+
+type C 的类型为字符串或者数字
+123function test(value: C) &amp;#123; ">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near">
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="typescript类型运算">
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客">
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary">
+    
+
+  <!-- Title -->
+  
+  <title>typescript类型运算 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
+<div class="menu-bg">
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+  <a href="#menu"></a>
+</nav>
+
+
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
+</header>
+
+
+    <section class="main">
+      
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2020/11/15/typescript类型运算/">
+                typescript类型运算
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-11-15</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/typescript/">typescript</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        <h4 id="Union-Types-联合类型-“｜”"><a href="#Union-Types-联合类型-“｜”" class="headerlink" title="Union Types 联合类型 “｜”"></a>Union Types 联合类型 “｜”</h4><p>A | B 表示一个类型为 A 或 B 的实体.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type A = string;</span><br><span class="line">type B = number;</span><br><span class="line">type C = A | B;</span><br></pre></td></tr></table></figure>
+
+<p>type C 的类型为字符串或者数字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(value: C) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法的入参必须是字符串或者数字</p>
+<h4 id="Intersection-Types-交叉类型-“-amp-”-TypeScript-1-6-加入"><a href="#Intersection-Types-交叉类型-“-amp-”-TypeScript-1-6-加入" class="headerlink" title="Intersection Types 交叉类型 “&amp;” (TypeScript 1.6 加入)"></a>Intersection Types 交叉类型 “&amp;” (TypeScript 1.6 加入)</h4><p>A &amp; B 表示一个类型同时为 A 和 B 的实体.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type A = &#123; a: string &#125;;</span><br><span class="line">type B = &#123; b: number &#125;;</span><br><span class="line">// C 类型为 &#123; a: string; b: number &#125;</span><br><span class="line">type C = A &amp; B;</span><br></pre></td></tr></table></figure>
+
+<h4 id="索引类型-“keyof”-TypeScript-2-1-加入"><a href="#索引类型-“keyof”-TypeScript-2-1-加入" class="headerlink" title="索引类型 “keyof” (TypeScript 2.1 加入)"></a>索引类型 “keyof” (TypeScript 2.1 加入)</h4><p>keyof T 返回一个类型，这个类型是一个 string literal 的 union，内容是 T 中所有的属性名 (key)。</p>
+<p>例: keyof { a: 1, b: 2 } 得到的类型是 “a” | “b”</p>
+<h4 id="约束类型-“extends”"><a href="#约束类型-“extends”" class="headerlink" title="约束类型 “extends”"></a>约束类型 “extends”</h4><p>这里的 extends 关键词不同于在 class 后使用 extends 的继承作用，泛型内使用的主要作用是对泛型加以约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type T = &#123;</span><br><span class="line">  a: string;</span><br><span class="line">  b: string;</span><br><span class="line">&#125;;</span><br><span class="line">function test&lt;K extends keyof T&gt;(key: K) &#123;</span><br><span class="line">  const obj = &#123;</span><br><span class="line">    a: &quot;1&quot;,</span><br><span class="line">    b: &quot;2&quot;,</span><br><span class="line">  &#125;;</span><br><span class="line">  return obj[key];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的参数 key 只能是字符串‘a’或字符串‘b’</p>
+<h4 id="条件类型-TypeScript-2-8-加入"><a href="#条件类型-TypeScript-2-8-加入" class="headerlink" title="条件类型 (TypeScript 2.8 加入)"></a>条件类型 (TypeScript 2.8 加入)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T extends U ? X : Y</span><br></pre></td></tr></table></figure>
+
+<p>上面的类型意思是，若 T 能够赋值给 U，那么类型是 X，否则为 Y。</p>
+<h4 id="Lookup-Types-查找类型"><a href="#Lookup-Types-查找类型" class="headerlink" title="Lookup Types 查找类型"></a>Lookup Types 查找类型</h4><p>[] 的类型版。</p>
+<p>T[K] 返回 (类型 T 中以 K 为属性名的值) 的类型。K 必须是 keyof T 的子集，可以是一个字符串字面量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123; k1: 1, k2: &quot;v2&quot; &#125;;</span><br><span class="line"></span><br><span class="line">// tv1 为number</span><br><span class="line">type tv1 = typeof a[&quot;k1&quot;];</span><br><span class="line"></span><br><span class="line">// tv2 为string</span><br><span class="line">type tv2 = typeof a[&quot;k2&quot;];</span><br><span class="line"></span><br><span class="line">// tv$ 为 (number|string): 属性名的并集对应到了属性值的类型的并集</span><br><span class="line">type tv$ = typeof a[&quot;k1&quot; | &quot;k2&quot;];</span><br><span class="line"></span><br><span class="line">// 以上的括号不是必需的: typeof 优先级更高</span><br><span class="line"></span><br><span class="line">// 也可以用于获取内置类型 (string 或 string[]) 上的方法的类型</span><br><span class="line"></span><br><span class="line">// (pos: number) =&gt; string</span><br><span class="line">type t_charAt = string[&quot;charAt&quot;];</span><br><span class="line"></span><br><span class="line">// (...items: string[]) =&gt; number</span><br><span class="line">type t_push = string[][&quot;push&quot;];</span><br></pre></td></tr></table></figure>
+
+<h4 id="Mapped-Types-映射类型-“in”-TypeScript-2-1-加入"><a href="#Mapped-Types-映射类型-“in”-TypeScript-2-1-加入" class="headerlink" title="Mapped Types 映射类型 “in”(TypeScript 2.1 加入)"></a>Mapped Types 映射类型 “in”(TypeScript 2.1 加入)</h4><p>我们可以在类型定义中引用其他类型的 (部分或全部) 属性，并对其进行运算，用运算结果定义出新的类型 (Mapped Type)。即”把旧类型的属性 map (映射) 成新类型的属性”，可以比作 list comprehension (把旧 list 的成员 map 成新 list 的成员) 的类型属性版。</p>
+<p>引用哪些属性同样是通过一个 string literal 的 union 来定义的。这个 union 必须是 keyof 旧类型 的子集，可以是一个或多个 string literal，也可以是 keyof 的返回值 (即映射全部属性)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">    k1: string;</span><br><span class="line">    k2: string;</span><br><span class="line">    k3: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 从A中取一部分属性，类型不变 (A[P] 是上面讲的查找类型)</span><br><span class="line">// 结果: type A_var1 = &#123; k1: string, k3: number &#125;</span><br><span class="line">type A_var1 = &#123;</span><br><span class="line">    [P in &quot;k1&quot; | &quot;k3&quot;]: A[P];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 从A中取所有属性， 类型改为number</span><br><span class="line">// 结果: type A_var1 = &#123; k1: number, k2: number, k3: number &#125;</span><br><span class="line">// **注意** keyof / Mapped type / 泛型一起使用时有一些特殊规则。建议读一下最后一部分 &quot;DeepReadonly 是怎样展开的&quot;</span><br><span class="line">type A_var2 = &#123;</span><br><span class="line">    [P in keyof A]: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 从A中取所有属性， 类型改为相应的Promise (TS 2.1 release note中的Deferred是这个的泛型版)</span><br><span class="line">type A_var3 = &#123;</span><br><span class="line">    [P in keyof A]: Promise&lt;A[P]&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="工具泛型"><a href="#工具泛型" class="headerlink" title="工具泛型"></a>工具泛型</h4><p>TypesScript 中内置了很多工具泛型，内置的泛型在 TypeScript 内置的 lib.es5.d.ts 中都有定义，所以不需要任何依赖都是可以直接使用的，<a href="https://github.com/microsoft/TypeScript/blob/master/lib/lib.es5.d.ts" target="_blank" rel="noopener">直达链接</a></p>
+<h5 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial</h5><p>Partial 用于将一个接口的所有属性设置为可选状态，首先通过 keyof T ，取出类型变量 T 的所有属性，然后通过 in 进行遍历，最后在属性后加上一个 ?<br>上定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Partial&lt;T&gt; = &#123;</span><br><span class="line">    [P in keyof T]?: T[P];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Required"><a href="#Required" class="headerlink" title="Required"></a>Required</h5><p>Required 的作用刚好与 Partial 相反，就是将接口中所有可选的属性改为必须的，区别就是把 Partial 里面的 ? 替换成了 -?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Required&lt;T&gt; = &#123;</span><br><span class="line">    [P in keyof T]-?: T[P];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly</h5><p>将一个接口的所有属性设置为只读状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Readonly&lt;T&gt; = &#123;</span><br><span class="line">    readonly [P in keyof T]: T[P];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Pick"><a href="#Pick" class="headerlink" title="Pick"></a>Pick</h5><p>从一个复合类型中，取出几个想要的类型的组合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Pick&lt;T, K extends keyof T&gt; = &#123;</span><br><span class="line">    [P in K]: T[P];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 原始类型</span><br><span class="line">interface TState &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">  like: string[];</span><br><span class="line">&#125;</span><br><span class="line">// 如果我只想要name和age怎么办，最粗暴的就是直接再定义一个（我之前就是这么搞得）</span><br><span class="line">interface TSingleState &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line">// 这样的弊端是什么？就是在Tstate发生改变的时候，TSingleState并不会跟着一起改变，所以应该这么写</span><br><span class="line">interface TSingleState extends Pick&lt;TState, &quot;name&quot; | &quot;age&quot;&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h5><p>将一个类型的所有属性值都映射到另一个类型上并创造一个新的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Record&lt;K extends keyof any, T&gt; = &#123;</span><br><span class="line">    [P in K]: T;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">type petsGroup = &apos;dog&apos; | &apos;cat&apos; | &apos;fish&apos;;</span><br><span class="line">interface IPetInfo &#123;</span><br><span class="line">    name:string,</span><br><span class="line">    age:number,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type IPets = Record&lt;petsGroup, IPetInfo&gt;;</span><br><span class="line"></span><br><span class="line">const animalsInfo:IPets = &#123;</span><br><span class="line">    dog:&#123;</span><br><span class="line">        name:&apos;dogName&apos;,</span><br><span class="line">        age:2</span><br><span class="line">    &#125;,</span><br><span class="line">    cat:&#123;</span><br><span class="line">        name:&apos;catName&apos;,</span><br><span class="line">        age:3</span><br><span class="line">    &#125;,</span><br><span class="line">    fish:&#123;</span><br><span class="line">        name:&apos;fishName&apos;,</span><br><span class="line">        age:5</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Exclude"><a href="#Exclude" class="headerlink" title="Exclude"></a>Exclude</h5><p><code>Exclude&lt;T, U&gt;</code>的意思是从 T 中排除那些可分配给 U 的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Exclude&lt;T, U&gt; = T extends U ? never : T;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// A 类型为10</span><br><span class="line">type A = Exclude&lt;&quot;a&quot; | 10, &quot;a&quot; | &quot;b&quot; | &quot;c&quot;&gt;;</span><br><span class="line"></span><br><span class="line">// 你以为的 Exclude</span><br><span class="line">type A = &quot;a&quot; | 10 extends &quot;a&quot; | &quot;b&quot; | &quot;c&quot; ? never : &quot;a&quot; | 10;</span><br><span class="line">// 实际上的 Exclude</span><br><span class="line">type A =</span><br><span class="line">  | (&quot;a&quot; extends &quot;a&quot; | &quot;b&quot; | &quot;c&quot; ? never : &quot;a&quot;)</span><br><span class="line">  | (10 extends &quot;a&quot; | &quot;b&quot; | &quot;c&quot; ? never : 10);</span><br></pre></td></tr></table></figure>
+
+<h5 id="Extract"><a href="#Extract" class="headerlink" title="Extract"></a>Extract</h5><p><code>Extract&lt;T, U&gt;</code>的意思是从 T 中提取可分配给 U 的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Extract&lt;T, U&gt; = T extends U ? T : never;</span><br></pre></td></tr></table></figure>
+
+<p>和 Exclude 相反</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// number</span><br><span class="line">type A = Exclude&lt;number | string, string&gt;;</span><br><span class="line">// string</span><br><span class="line">type B = Extract&lt;number | string, string&gt;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Omit"><a href="#Omit" class="headerlink" title="Omit"></a>Omit</h5><p><code>Omit&lt;T, U&gt;</code>的意思是从对象类型 T 中剔除 U 属性并创建一个新的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type Omit&lt;T, K extends keyof any&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  name: string;</span><br><span class="line">  email: string;</span><br><span class="line">&#125;;</span><br><span class="line">type UserWithoutEmail = Omit&lt;User, &quot;email&quot;&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type UserWithoutEmail = &#123;</span><br><span class="line">    id: number;</span><br><span class="line">    name: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="ReturnType"><a href="#ReturnType" class="headerlink" title="ReturnType"></a>ReturnType</h5><p><code>ReturnType&lt;T&gt;</code>返回了范型参数 T 的返回值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: any) =&gt; infer R ? R : any;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// A: string</span><br><span class="line">type A = ReturnType&lt;() =&gt; string&gt;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="InstanceType"><a href="#InstanceType" class="headerlink" title="InstanceType"></a>InstanceType</h5><p>获取构造函数的实例类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方定义</span><br><span class="line">type InstanceType&lt;T extends new (...args: any) =&gt; any&gt; = T extends new (...args: any) =&gt; infer R ? R : any;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/随记/">#随记</a>
+        </div>
+    
+
+</div>
+    </section>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+  </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
+<script src="/js/logo.js"></script>
+
+  </body>
+</html>
