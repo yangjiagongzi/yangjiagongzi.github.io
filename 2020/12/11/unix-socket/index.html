@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Description-->
+  
+  <meta name="description" content="基于 Unix Socket 协议的 HTTP Server同时相比较 TCP 协议实现的可靠传输，Unix Socket 作为 IPC 有些优点：
+
+Unix Socket 仅仅复制数据，并不执行协议处理，不需要添加或删除网络报头，无需计算校验和，不产生顺序号，也不需要发送确认报文
+仅依赖命名管道">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near">
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="基于unix socket的HTTP Server">
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客">
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary">
+    
+
+  <!-- Title -->
+  
+  <title>基于unix socket的HTTP Server - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
+<div class="menu-bg">
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+  <a href="#menu"></a>
+</nav>
+
+
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
+</header>
+
+
+    <section class="main">
+      
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2020/12/11/unix-socket/">
+                基于unix socket的HTTP Server
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-12-11</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/nodejs/">nodejs</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        <h3 id="基于-Unix-Socket-协议的-HTTP-Server"><a href="#基于-Unix-Socket-协议的-HTTP-Server" class="headerlink" title="基于 Unix Socket 协议的 HTTP Server"></a>基于 Unix Socket 协议的 HTTP Server</h3><p>同时相比较 TCP 协议实现的可靠传输，Unix Socket 作为 IPC 有些优点：</p>
+<ul>
+<li>Unix Socket 仅仅复制数据，并不执行协议处理，不需要添加或删除网络报头，无需计算校验和，不产生顺序号，也不需要发送确认报文</li>
+<li>仅依赖命名管道，不占用端口</li>
+</ul>
+<blockquote>
+<p>Unix Socket 并不是一种协议，它是进程间通信（IPC）的一种方式，解决本机的两个进程通信</p>
+</blockquote>
+<h4 id="server-端"><a href="#server-端" class="headerlink" title="server 端"></a>server 端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const http = require(&quot;http&quot;);</span><br><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line">const fs = require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">const myServer = http.createServer(function (req, res) &#123;</span><br><span class="line">  res.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  res.end(&quot;Hello World\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myServer.on(&quot;error&quot;, (e) =&gt; &#123;</span><br><span class="line">  // 当sock文件被占用的时候删除文件</span><br><span class="line">  if (e.code === &quot;EADDRINUSE&quot;) &#123;</span><br><span class="line">    fs.unlinkSync(e.address);</span><br><span class="line">    myServer.listen(path.join(process.cwd(), &quot;myctl.sock&quot;));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 防止进程退出后sock文件仍然被占用</span><br><span class="line">process.on(&quot;SIGINT&quot;, function () &#123;</span><br><span class="line">  myServer.close();</span><br><span class="line">  console.log(&quot;\nSIGINT, server closed&quot;);</span><br><span class="line">  process.exit();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myServer.listen(path.join(process.cwd(), &quot;myctl.sock&quot;));</span><br><span class="line">console.log(&quot;Server running at &quot; + path.join(process.cwd(), &quot;myctl.sock&quot;));</span><br></pre></td></tr></table></figure>
+
+<h4 id="client-端"><a href="#client-端" class="headerlink" title="client 端"></a>client 端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">var path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">var options = &#123;</span><br><span class="line">  socketPath: path.join(process.cwd(), &quot;myctl.sock&quot;),</span><br><span class="line">  method: &quot;GET&quot;,</span><br><span class="line">  path: &quot;&quot;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var req = http.request(options, function (res) &#123;</span><br><span class="line">  console.log(&quot;STATUS: &quot; + res.statusCode);</span><br><span class="line">  console.log(&quot;HEADERS: &quot; + JSON.stringify(res.headers));</span><br><span class="line"></span><br><span class="line">  res.on(&quot;data&quot;, function (chunk) &#123;</span><br><span class="line">    console.log(chunk.toString());</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">req.end();</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/随记/">#随记</a>
+        </div>
+    
+
+</div>
+    </section>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+  </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
+<script src="/js/logo.js"></script>
+
+  </body>
+</html>
