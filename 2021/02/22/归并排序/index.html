@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Description-->
+  
+  <meta name="description" content="递归算法使用递归的代码如下。优点是描述算法过程思路清晰，缺点是使用递归，mergeSort()函数频繁地自我调用。长度为 n 的数组最终会调用 mergeSort()函数 2n-1 次，这意味着一个长度超过 1500 的数组会在 Firefox 上发生栈溢出错误。可以考虑使用迭代来实现同样的功能。
+">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near">
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="归并排序">
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客">
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary">
+    
+
+  <!-- Title -->
+  
+  <title>归并排序 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
+<div class="menu-bg">
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+  <a href="#menu"></a>
+</nav>
+
+
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
+</header>
+
+
+    <section class="main">
+      
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2021/02/22/归并排序/">
+                归并排序
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2021-02-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/算法/">算法</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        <h3 id="递归算法"><a href="#递归算法" class="headerlink" title="递归算法"></a>递归算法</h3><p>使用递归的代码如下。优点是描述算法过程思路清晰，缺点是使用递归，mergeSort()函数频繁地自我调用。长度为 n 的数组最终会调用 mergeSort()函数 2n-1 次，这意味着一个长度超过 1500 的数组会在 Firefox 上发生栈溢出错误。可以考虑使用迭代来实现同样的功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  <span class="keyword">while</span> (left.length &gt; <span class="number">0</span> &amp;&amp; right.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left[<span class="number">0</span>] &lt; right[<span class="number">0</span>]) &#123;</span><br><span class="line">      <span class="comment">/*shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。*/</span></span><br><span class="line">      result.push(left.shift());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result.push(right.shift());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result.concat(left).concat(right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (items.length == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> items;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> middle = <span class="built_in">Math</span>.floor(items.length / <span class="number">2</span>),</span><br><span class="line">    left = items.slice(<span class="number">0</span>, middle),</span><br><span class="line">    right = items.slice(middle);</span><br><span class="line">  <span class="keyword">return</span> merge(mergeSort(left), mergeSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="非递归算法"><a href="#非递归算法" class="headerlink" title="非递归算法"></a>非递归算法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergePass</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  arr = [],</span></span></span><br><span class="line"><span class="function"><span class="params">  temp = new Array(arr.length</span>),</span></span><br><span class="line"><span class="function">  <span class="title">N</span> = <span class="title">arr</span>.<span class="title">length</span>,</span></span><br><span class="line"><span class="function">  <span class="title">length</span> = 1</span></span><br><span class="line"><span class="function">) </span>&#123;</span><br><span class="line">  <span class="comment">// 将每个元素看作是相邻的数组长度为1。</span></span><br><span class="line">  <span class="keyword">let</span> t; <span class="comment">// 迭代深度。</span></span><br><span class="line">  <span class="keyword">for</span> (t = <span class="number">0</span>; <span class="built_in">Math</span>.pow(<span class="number">2</span>, t) &lt; N; t++, length *= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="comment">// 每次跳过的长度翻倍。</span></span><br><span class="line">    <span class="keyword">const</span> even = t % <span class="number">2</span> === <span class="number">0</span>; <span class="comment">// 复用 arr 和 temp 来回赋值。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> left = <span class="number">0</span>; left &lt; N; left += <span class="number">2</span> * length) &#123;</span><br><span class="line">      <span class="comment">// 左边数组起始位置 left 从0开始。</span></span><br><span class="line">      <span class="keyword">const</span> middle = left + length &lt; N ? left + length : left; <span class="comment">// 右边数组起始位置 middle 就是left + 一个数组长度length 但是不要超过 N 。</span></span><br><span class="line">      <span class="keyword">const</span> right = left + <span class="number">2</span> * length &lt; N ? left + <span class="number">2</span> * length : N; <span class="comment">// 右边界 right 就是 left + 两个数组长度。</span></span><br><span class="line">      merge(even ? arr : temp, even ? temp : arr, left, middle, right); <span class="comment">// 合并每两个相邻的数组。</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (t % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr; <span class="comment">//返回arr</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> temp; <span class="comment">// 返回 temp 。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">arr, temp, left, middle, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> leftEnd = middle - <span class="number">1</span>; <span class="comment">// 通过右边数组的起始位置得到左边数组的结束位置。</span></span><br><span class="line">  <span class="keyword">while</span> (left &lt;= leftEnd &amp;&amp; middle &lt; right) &#123;</span><br><span class="line">    <span class="comment">// 如果‘指针’没有越界。</span></span><br><span class="line">    <span class="keyword">if</span> (arr[left] &gt; arr[middle]) &#123;</span><br><span class="line">      <span class="comment">// 如果左边数组第一个元素比右边数组第一个元素大。</span></span><br><span class="line">      temp[left + middle - leftEnd - <span class="number">1</span>] = arr[middle++]; <span class="comment">// 将右边数组最小的放入有序数组 temp（初始值为空)。</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temp[left + middle - leftEnd - <span class="number">1</span>] = arr[left++]; <span class="comment">// 将左边数组最小的放入有序数组 temp（初始值为空)。</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (left &gt; leftEnd &amp;&amp; middle &lt; right) &#123;</span><br><span class="line">    <span class="comment">// 如果左边数组放完了，右边数组还有元素。</span></span><br><span class="line">    temp[left + middle - leftEnd - <span class="number">1</span>] = arr[middle++]; <span class="comment">// 那么依次将右边数组剩余的元素放入 temp 。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (left &lt;= leftEnd &amp;&amp; middle &gt;= right) &#123;</span><br><span class="line">    <span class="comment">// 如果右边数组放完了，左边数组还有元素</span></span><br><span class="line">    temp[left + middle - leftEnd - <span class="number">1</span>] = arr[left++]; <span class="comment">// 那么依次将左边数组剩余的元素放入 temp 。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动图展示"><a href="#动图展示" class="headerlink" title="动图展示"></a>动图展示</h3><p><a href="1.gif"> </a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/排序/">#排序</a>
+        </div>
+    
+
+</div>
+    </section>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+  </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
+<script src="/js/logo.js"></script>
+
+  </body>
+</html>
