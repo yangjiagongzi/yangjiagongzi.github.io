@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Description-->
+  
+  <meta name="description" content="介绍快速排序（Quicksort）是对冒泡排序算法的一种改进。快速排序由 C. A. R. Hoare 在 1960 年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near">
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="快速排序">
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客">
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary">
+    
+
+  <!-- Title -->
+  
+  <title>快速排序 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
+<div class="menu-bg">
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+  <a href="#menu"></a>
+</nav>
+
+
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
+</header>
+
+
+    <section class="main">
+      
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2021/02/22/快速排序/">
+                快速排序
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2021-02-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/算法/">算法</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>快速排序（Quicksort）是对冒泡排序算法的一种改进。<br>快速排序由 C. A. R. Hoare 在 1960 年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+<p><strong>经典快速排序</strong>总是指定数组或者某部分的最后一个元素作为基准值，<strong>随机快速排序</strong>指定数组或者某一部分中的随机值作为基准值</p>
+<h4 id="递归算法"><a href="#递归算法" class="headerlink" title="递归算法"></a>递归算法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> pivot = arr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> left = [];</span><br><span class="line">  <span class="keyword">let</span> right = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] &lt; pivot) &#123;</span><br><span class="line">      left.push(arr[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      right.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 递归</span></span><br><span class="line">  <span class="keyword">return</span> quickSort(left).concat([pivot], quickSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="非递归算法"><a href="#非递归算法" class="headerlink" title="非递归算法"></a>非递归算法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> quickSort = <span class="function">(<span class="params">array</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> sort = <span class="function">(<span class="params">arr, left = <span class="number">0</span>, right = arr.length - <span class="number">1</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">      <span class="comment">//如果左边的索引大于等于右边的索引说明整理完毕</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> i = left;</span><br><span class="line">    <span class="keyword">let</span> j = right;</span><br><span class="line">    <span class="keyword">const</span> baseVal = arr[j]; <span class="comment">// 取无序数组最后一个数为基准值</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">      <span class="comment">//把所有比基准值小的数放在左边大的数放在右边</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt; j &amp;&amp; arr[i] &lt;= baseVal) &#123;</span><br><span class="line">        <span class="comment">//找到一个比基准值大的数交换</span></span><br><span class="line">        i++;</span><br><span class="line">      &#125;</span><br><span class="line">      arr[j] = arr[i]; <span class="comment">// 将较大的值放在右边如果没有比基准值大的数就是将自己赋值给自己（i 等于 j）</span></span><br><span class="line">      <span class="keyword">while</span> (j &gt; i &amp;&amp; arr[j] &gt;= baseVal) &#123;</span><br><span class="line">        <span class="comment">//找到一个比基准值小的数交换</span></span><br><span class="line">        j--;</span><br><span class="line">      &#125;</span><br><span class="line">      arr[i] = arr[j]; <span class="comment">// 将较小的值放在左边如果没有找到比基准值小的数就是将自己赋值给自己（i 等于 j）</span></span><br><span class="line">    &#125;</span><br><span class="line">    arr[j] = baseVal; <span class="comment">// 将基准值放至中央位置完成一次循环（这时候 j 等于 i ）</span></span><br><span class="line">    sort(arr, left, j - <span class="number">1</span>); <span class="comment">// 将左边的无序数组重复上面的操作</span></span><br><span class="line">    sort(arr, j + <span class="number">1</span>, right); <span class="comment">// 将右边的无序数组重复上面的操作</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> newArr = array.concat(); <span class="comment">// 为了保证这个函数是纯函数拷贝一次数组</span></span><br><span class="line">  sort(newArr);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动图展示"><a href="#动图展示" class="headerlink" title="动图展示"></a>动图展示</h3><p><img src="/images/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.gif" alt=" "></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/排序/">#排序</a>
+        </div>
+    
+
+</div>
+    </section>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+  </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
+<script src="/js/logo.js"></script>
+
+  </body>
+</html>
