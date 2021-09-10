@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Description-->
+  
+  <meta name="description" content="什么是跨域跨域，是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 JavaScript 实施的安全限制。
+
+所谓的同源是指，域名、协议、端口均为相同。
+
+同源策略限制了一下行为:
+
+Cookie、LocalStorage 和 IndexDB 无法读取
+DOM 和 JS 对象">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Near">
+  
+
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="跨域">
+  
+
+  <!--Open Graph Description-->
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="杨家公子的博客">
+
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+
+  <!--Page Cover-->
+   
+  <meta name="twitter:card" content="summary">
+    
+
+  <!-- Title -->
+  
+  <title>跨域 - 杨家公子的博客</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- Gallery -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+  <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Menu -->
+    <!--Menu Links and Overlay-->
+<div class="menu-bg">
+  <div class="menu-container">
+    <ul>
+      
+      <li class="menu-item">
+        <a href="/"> Home </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives"> Archives </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags"> Tags </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories"> Categories </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+  <a href="#menu"></a>
+</nav>
+
+
+    <div class="container">
+      <!-- Main Content -->
+      <div class="root">
+  <div class="content">
+    <header>
+  <div class="logo">
+    <a href="/">
+      <div id="title-desktop" class="hidden">杨家公子</div>
+      <div id="title-mobile" class="hidden">杨家公子</div>
+      <canvas id="spring-text"></canvas
+    ></a>
+    
+  </div>
+</header>
+
+
+    <section class="main">
+      
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2021/09/10/跨域/">
+                跨域
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2021-09-10</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/javascript/">javascript</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        <h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h3><p>跨域，是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 JavaScript 实施的安全限制。</p>
+<blockquote>
+<p>所谓的同源是指，域名、协议、端口均为相同。</p>
+</blockquote>
+<p>同源策略限制了一下行为:</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
+<li>DOM 和 JS 对象无法获取</li>
+<li>Ajax 请求发送不出去</li>
+</ul>
+<h3 id="实际代码"><a href="#实际代码" class="headerlink" title="实际代码"></a>实际代码</h3><ol>
+<li>创建 index.js</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以当前路径创建服务，默认加载当前目录index.html</span></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(express.static(__dirname));</span><br><span class="line">app.listen(<span class="number">90</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以路由创建服务</span></span><br><span class="line"><span class="keyword">const</span> app2 = express();</span><br><span class="line">app2.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">"你好"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app2.listen(<span class="number">91</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在当前目录创建 index.html</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    hello</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>启动服务<code>node index.js</code>. 可以访问<code>http://localhost:90/</code>和<code>http://localhost:91/</code>. 这两个服务端口不同，不满足同源策略，因此互相访问受限制</p>
+</li>
+<li><p>在 index.html 中尝试访问 <code>http://localhost:91/</code>, 增加下面代码</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  fetch(<span class="string">"http://localhost:91/"</span>) .then(<span class="function">(<span class="params">res</span>) =&gt;</span> res.text()) .then(<span class="function">(<span class="params">data</span>) =&gt;</span></span><br><span class="line">  alert(data));</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到会出现“CORS”相关的报错:<br><img src="/images/%E8%B7%A8%E5%9F%9F1.png" alt=" "></p>
+<h3 id="如何解决跨域"><a href="#如何解决跨域" class="headerlink" title="如何解决跨域"></a>如何解决跨域</h3><h4 id="jsonp-跨域"><a href="#jsonp-跨域" class="headerlink" title="jsonp 跨域"></a>jsonp 跨域</h4><p>JSONP(JSON with Padding)是 JSON 的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。由于同源策略，一般来说位于 server1.example.com 的网页无法与不是 server1.example.com 的服务器沟通，而 HTML 的 &lt;script&gt; 元素是一个例外。利用 &lt;script&gt; 元素的这个开放策略，网页可以得到从其他来源动态产生的 JSON 资料，而这种使用模式就是所谓的 JSONP。用 JSONP 抓到的资料并不是 JSON，而是任意的 JavaScript，用 JavaScript 直译器执行而不是用 JSON 解析器解析。</p>
+<p>实现方式</p>
+<ol>
+<li>修改 index.js</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以当前路径创建服务，默认加载当前目录index.html</span></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(express.static(__dirname));</span><br><span class="line">app.listen(<span class="number">90</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以路由创建服务</span></span><br><span class="line"><span class="keyword">const</span> app2 = express();</span><br><span class="line">app2.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> callbackName = req.query.callback;</span><br><span class="line">  res.send(callbackName + <span class="string">"('你好')"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app2.listen(<span class="number">91</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 91 端口的服务接收一个 callback 的参数，然后与返回的数据一起拼成一段 js 代码：<code>callback(data)</code></p>
+<ol start="2">
+<li>修改 index.html</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    hello</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">      alert(data);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:91?callback=f"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>script 标签不受同源策略的限制，因此我们通过 script 标签发送请求<br><img src="/images/%E8%B7%A8%E5%9F%9F2.png" alt=" "><br>查看控制台，可以看到请求回来一段 js 代码</p>
+<h4 id="CORS-跨域"><a href="#CORS-跨域" class="headerlink" title="CORS 跨域"></a>CORS 跨域</h4><p>CORS 是一个 W3C 标准，全称是”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出 XMLHttpRequest 请求，从而克服了 AJAX 只能同源使用的限制。<br>整个 CORS 通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS 通信与同源的 AJAX 通信没有差别，代码完全一样。浏览器一旦发现 AJAX 请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br>因此，实现 CORS 通信的关键是服务器。 只要服务器实现了 CORS 接口 ，就可以跨源通信。</p>
+<ol>
+<li>我们还原 index.html</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    hello</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    fetch(<span class="string">"http://localhost:91/"</span>)</span></span><br><span class="line"><span class="javascript">      .then(<span class="function">(<span class="params">res</span>) =&gt;</span> res.text())</span></span><br><span class="line"><span class="javascript">      .then(<span class="function">(<span class="params">data</span>) =&gt;</span> alert(data));</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改 index.js</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以当前路径创建服务，默认加载当前目录index.html</span></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(express.static(__dirname));</span><br><span class="line">app.listen(<span class="number">90</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以路由创建服务</span></span><br><span class="line"><span class="keyword">const</span> app2 = express();</span><br><span class="line">app2.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 增加header配置</span></span><br><span class="line">  res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br><span class="line">  res.send(<span class="string">"你好"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app2.listen(<span class="number">91</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>JSONP 的主要优势在于对浏览器的支持较好；虽然目前主流浏览器支持 CORS，但 IE10 以下不支持 CORS。</li>
+<li>JSONP 只能用于获取资源（即只读，类似于 GET 请求）；CORS 支持所有类型的 HTTP 请求，功能完善。（这点 JSONP 被玩虐，但大部分情况下 GET 已经能满足需求了）</li>
+<li>JSONP 的错误处理机制并不完善，我们没办法进行错误处理；而 CORS 可以通过 onerror 事件监听错误，并且浏览器控制台会看到报错信息，利于排查。</li>
+<li>JSONP 只会发一次请求；而对于复杂请求，CORS 会发两次请求。</li>
+<li>始终觉得安全性这个东西是相对的，没有绝对的安全，也做不到绝对的安全。毕竟 JSONP 并不是跨域规范，它存在很明显的安全问题：callback 参数注入和资源访问授权设置。CORS 好歹也算是个跨域规范，在资源访问授权方面进行了限制（Access-Control-Allow-Origin），而且标准浏览器都做了安全限制，比如拒绝手动设置 origin 字段，相对来说是安全了一点。<br>但是回过头来看一下，就算是不安全的 JSONP，我们依然可以在服务端端进行一些权限的限制，服务端和客户端也都依然可以做一些注入的安全处理，哪怕被攻克，它也只能读一些东西。就算是比较安全的 CORS，同样可以在服务端设置出现漏洞或者不在浏览器的跨域限制环境下进行攻击，而且它不仅可以读，还可以写。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/随记/">#随记</a>
+        </div>
+    
+
+</div>
+    </section>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="push"></div>
+
+<footer class="footer-content">
+  <div class="container">
+    <div class="footer-copyright">愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。</div>
+  </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <script src="/js/jquery.js"></script> <script src="/js/tweenmax.js"></script> <script src="/js/main.js"></script>
+<script src="/js/logo.js"></script>
+
+  </body>
+</html>
